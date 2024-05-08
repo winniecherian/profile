@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLI Commands UI</title>
+</head>
+<body>
+    <h1>CLI Commands UI</h1>
+    <button onclick="executeCommand()">Run CLI Command</button>
+    <div id="output"></div>
+
+    <script>
+        function executeCommand() {
+            // Execute CLI command using JavaScript (replace with your actual command)
+            const command = 'your-cli-command';
+            const outputElement = document.getElementById('output');
+
+            // Example using Node.js child process
+            const { exec } = require('child_process');
+            exec(command, (error, stdout, stderr) => {
+                if (error) {
+                    outputElement.textContent = `Error: ${error.message}`;
+                    return;
+                }
+                if (stderr) {
+                    outputElement.textContent = `Error: ${stderr}`;
+                    return;
+                }
+                outputElement.textContent = stdout;
+            });
+        }
+    </script>
+</body>
+</html>
